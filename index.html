@@ -3,241 +3,928 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dmitry Zyadik - Portfolio</title>
+    <title>Dmitry Zyadik | Game & Mobile Dev</title>
+    
+    <!-- Шрифты: Пиксельный для заголовков и Моноширинный для кода/текста -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Press+Start+2P|Comic+Neue:700&display=swap">
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+    
+    <!-- Иконки -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
-        /* Critical CSS - минимизирован и оптимизирован */
-        *{margin:0;padding:0;box-sizing:border-box}
-        body{background-color:#000;color:#0f0;font-family:'Comic Neue',cursive;line-height:1.4;padding:20px;max-width:900px;margin:0 auto}
-        .container{background-color:#000;border:8px double #0f0;padding:20px;position:relative;overflow:hidden}
-        header{text-align:center;padding:20px 0;border-bottom:4px dashed #0f0;margin-bottom:30px}
-        h1{font-family:'Press Start 2P',cursive;font-size:2.5rem;color:#ff0;text-shadow:3px 3px 0 #f00;margin-bottom:10px;letter-spacing:2px}
-        .tagline{font-size:1.2rem;color:#ff0;margin-bottom:20px;text-align:center}
-        .contact-links{display:flex;justify-content:center;gap:20px;margin:20px 0}
-        .contact-links a{display:inline-block;padding:8px 15px;background-color:#00f;color:#ff0;text-decoration:none;border:2px solid #ff0;font-family:'Press Start 2P',cursive;font-size:0.7rem;transition:all 0.3s}
-        .marquee{background-color:#00f;color:#ff0;padding:10px;margin:20px 0;font-family:'Press Start 2P',cursive;font-size:0.8rem;border:2px dashed #ff0;overflow:hidden;white-space:nowrap}
-        .marquee span{display:inline-block;padding-left:100%}
-        .projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px;margin:20px 0}
-        .project-card{background-color:#111;border:4px solid #0f0;padding:15px;transition:all 0.3s;position:relative;overflow:hidden}
-        .project-image{height:120px;background-color:#000;border:2px solid #0ff;margin-bottom:10px;display:flex;align-items:center;justify-content:center;overflow:hidden}
-        .project-image img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s}
-        .project-title{display:flex;align-items:center;gap:8px;margin-bottom:8px}
-        .project-title img{width:16px;height:16px}
-        .project-description{font-size:0.9rem;margin-bottom:10px;color:#0ff}
-        .project-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px}
-        .tag{background-color:#f00;color:#ff0;padding:3px 8px;font-size:0.7rem;font-family:'Press Start 2P',cursive}
-        .project-links{display:flex;gap:10px}
-        .project-link,.github-link{display:inline-flex;align-items:center;gap:5px;padding:5px 10px;text-decoration:none;font-family:'Press Start 2P',cursive;font-size:0.6rem;transition:all 0.3s}
-        .project-link{background-color:#0f0;color:#000;border:2px solid #0f0}
-        .github-link{background-color:#000;color:#0ff;border:2px solid #0ff}
-        h2{font-family:'Press Start 2P',cursive;font-size:1.5rem;color:#0ff;text-shadow:2px 2px 0 #00f;margin:20px 0 10px;border-bottom:2px dotted #0ff;padding-bottom:5px}
-        .about-content{background-color:#111;border:4px dashed #0ff;padding:20px;margin:20px 0}
-        .about-text{margin-bottom:15px;color:#0ff}
-        .highlight{color:#ff0;font-weight:bold}
-        .skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px;margin:20px 0}
-        .skill-item{background-color:#00f;color:#ff0;padding:10px;text-align:center;font-family:'Press Start 2P',cursive;font-size:0.7rem;border:2px solid #ff0;transition:all 0.3s}
-        footer{text-align:center;margin-top:30px;padding-top:20px;border-top:4px dotted #0f0;color:#0f0;font-family:'Press Start 2P',cursive;font-size:0.7rem}
+        :root {
+            --bg-color: #050505;
+            --card-bg: rgba(20, 20, 20, 0.6);
+            --primary: #00ff41; /* Хакерский зеленый */
+            --secondary: #00f3ff; /* Неоновый голубой */
+            --accent: #ff0055; /* Яркий розовый для акцентов */
+            --text-main: #e0e0e0;
+            --text-dim: #888;
+            --font-pixel: 'Press Start 2P', cursive;
+            --font-code: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: none; /* Скрываем стандартный курсор для кастомного */
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-code);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* --- Кастомный курсор --- */
+        .cursor-dot,
+        .cursor-outline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 9999;
+            pointer-events: none;
+        }
+
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--primary);
+        }
+
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--primary);
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
+        }
+
+        body:hover .cursor-outline {
+            opacity: 1;
+        }
+
+        /* --- Фон с Canvas --- */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.4;
+        }
+
+        /* --- Утилиты и Скроллбар --- */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #000;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* --- Header --- */
+        header {
+            padding: 40px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(0, 255, 65, 0.2);
+            backdrop-filter: blur(5px);
+            position: sticky;
+            top: 0;
+            background: rgba(5, 5, 5, 0.8);
+            z-index: 100;
+        }
+
+        .logo {
+            font-family: var(--font-pixel);
+            font-size: 1.2rem;
+            color: var(--primary);
+            text-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+            text-decoration: none;
+            position: relative;
+        }
+
+        .logo::before {
+            content: '>';
+            margin-right: 10px;
+            animation: blink 1s infinite;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.9rem;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--secondary);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding-top: 50px;
+        }
+
+        .hero h1 {
+            font-family: var(--font-pixel);
+            font-size: clamp(1.5rem, 5vw, 3.5rem);
+            color: var(--text-main);
+            line-height: 1.4;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .glitch-text {
+            position: relative;
+            color: var(--text-main);
+        }
+
+        .glitch-text::before,
+        .glitch-text::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-color);
+        }
+
+        .glitch-text::before {
+            left: 2px;
+            text-shadow: -1px 0 var(--accent);
+            clip: rect(24px, 550px, 90px, 0);
+            animation: glitch-anim-2 3s infinite linear alternate-reverse;
+        }
+
+        .glitch-text::after {
+            left: -2px;
+            text-shadow: -1px 0 var(--secondary);
+            clip: rect(85px, 550px, 140px, 0);
+            animation: glitch-anim 2.5s infinite linear alternate-reverse;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--secondary);
+            margin-bottom: 40px;
+            min-height: 1.6em; /* Резервируем место под печатающий текст */
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            font-family: var(--font-code);
+            font-weight: 700;
+            text-decoration: none;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+            z-index: 1;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--primary);
+            z-index: -1;
+            transition: left 0.3s ease;
+        }
+
+        .btn:hover {
+            color: #000;
+            box-shadow: 0 0 20px var(--primary);
+        }
+
+        .btn:hover::before {
+            left: 0;
+        }
+
+        /* --- Marquee --- */
+        .marquee-container {
+            width: 100%;
+            background: var(--secondary);
+            color: #000;
+            padding: 10px 0;
+            margin: 40px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+            transform: skewY(-2deg);
+        }
+
+        .marquee-content {
+            display: inline-block;
+            font-family: var(--font-pixel);
+            font-size: 0.8rem;
+            animation: marquee 20s linear infinite;
+        }
+
+        /* --- Sections General --- */
+        section {
+            padding: 80px 0;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            font-family: var(--font-pixel);
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-bottom: 40px;
+            display: inline-block;
+            border-bottom: 4px solid var(--secondary);
+            padding-bottom: 10px;
+        }
+
+        /* --- Projects Grid (3D Tilt Cards) --- */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: perspective(1000px);
+            transition: transform 0.1s; /* JS handles smooth tilt */
+            backdrop-filter: blur(10px);
+        }
+
+        .project-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.2);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 180px;
+            background: #000;
+            margin-bottom: 20px;
+            overflow: hidden;
+            border: 1px solid #333;
+            position: relative;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+            opacity: 0.8;
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.1);
+            opacity: 1;
+        }
+
+        .project-title {
+            font-family: var(--font-pixel);
+            font-size: 0.8rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .project-title img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .project-desc {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            margin-bottom: 15px;
+            min-height: 60px;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            font-size: 0.7rem;
+            padding: 4px 8px;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            border-radius: 4px;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 15px;
+            margin-top: auto;
+        }
+
+        .icon-link {
+            color: var(--text-main);
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .icon-link:hover {
+            color: var(--secondary);
+            transform: translateY(-3px);
+            display: inline-block;
+        }
+
+        /* --- About & Skills --- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .terminal-window {
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            font-family: var(--font-code);
+            overflow: hidden;
+        }
+
+        .terminal-header {
+            background: #222;
+            padding: 10px 15px;
+            display: flex;
+            gap: 8px;
+        }
+
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
+        .red { background: #ff5f56; }
+        .yellow { background: #ffbd2e; }
+        .green { background: #27c93f; }
+
+        .terminal-body {
+            padding: 20px;
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+
+        .command { color: var(--primary); }
+        .string { color: var(--accent); }
+        .keyword { color: var(--secondary); }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .skill-pill {
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--secondary);
+            color: var(--secondary);
+            border-radius: 50px;
+            transition: all 0.3s;
+        }
+
+        .skill-pill:hover {
+            background: var(--secondary);
+            color: #000;
+            box-shadow: 0 0 15px var(--secondary);
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 50px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 50px;
+            color: var(--text-dim);
+            font-size: 0.8rem;
+        }
+
+        /* --- Animations --- */
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         
-        /* Медиа-запросы для мобильных устройств */
-        @media (max-width:768px){
-            h1{font-size:1.8rem}
-            h2{font-size:1.2rem}
-            .projects-grid{grid-template-columns:1fr}
-            .contact-links{flex-direction:column;align-items:center}
+        @keyframes glitch-anim {
+            0% { clip: rect(42px, 9999px, 44px, 0); transform: skew(0.5deg); }
+            5% { clip: rect(12px, 9999px, 59px, 0); transform: skew(0.5deg); }
+            10% { clip: rect(48px, 9999px, 29px, 0); transform: skew(0.5deg); }
+            100% { clip: rect(4px, 9999px, 91px, 0); transform: skew(0.5deg); }
+        }
+        @keyframes glitch-anim-2 {
+            0% { clip: rect(65px, 9999px, 100px, 0); transform: skew(0.5deg); }
+            5% { clip: rect(52px, 9999px, 74px, 0); transform: skew(0.5deg); }
+            100% { clip: rect(38px, 9999px, 49px, 0); transform: skew(0.5deg); }
+        }
+
+        /* --- Mobile Responsive --- */
+        @media (max-width: 768px) {
+            header { flex-direction: column; gap: 20px; }
+            nav ul { gap: 15px; font-size: 0.8rem; }
+            .about-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 1.5rem; }
+            
+            /* Скрываем кастомный курсор на тач-устройствах */
+            .cursor-dot, .cursor-outline { display: none; }
+            * { cursor: auto; }
         }
     </style>
-    
-    <!-- Отложенная загрузка некритичного CSS -->
-    <link rel="stylesheet" href="styles-deferred.css" media="print" onload="this.media='all'">
 </head>
 <body>
+
+    <!-- Canvas Background -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
     <div class="container">
-        <!-- Убрана сложная анимация scanline для улучшения производительности -->
-        
         <header>
-            <h1>DMITRY ZYADIK</h1>
-            <p class="tagline">MOBILE & WEB DEVELOPER <span class="blink">_</span></p>
-            
-            <div class="contact-links">
-                <a href="mailto:dmitry.zyadik@gmail.com">EMAIL</a>
-                <a href="https://github.com/ziadik">GITHUB</a>
-            </div>
+            <a href="#" class="logo">DZ_SYSTEMS</a>
+            <nav>
+                <ul>
+                    <li><a href="#projects">PROJECTS</a></li>
+                    <li><a href="#about">ABOUT</a></li>
+                    <li><a href="#skills">SKILLS</a></li>
+                    <li><a href="mailto:dmitry.zyadik@gmail.com">CONTACT</a></li>
+                </ul>
+            </nav>
         </header>
-        
-        <div class="marquee">
-            <span>• FLUTTER • PWA • SUPABASE • NODE.JS • TWA • SVELTE • GAME DEVELOPMENT • CROSS-PLATFORM SOLUTIONS •</span>
-        </div>
-        
+
         <main>
+            <!-- Hero Section -->
+            <section class="hero">
+                <h1 class="glitch-text" data-text="DMITRY ZYADIK">DMITRY ZYADIK</h1>
+                <p id="typing-text"></p>
+                <div class="cta-group">
+                    <a href="#projects" class="btn">Initialize Projects</a>
+                    <a href="https://github.com/ziadik" class="btn" style="margin-left: 20px; border-color: var(--text-dim); color: var(--text-dim);">GitHub</a>
+                </div>
+            </section>
+
+            <!-- Marquee -->
+            <div class="marquee-container">
+                <div class="marquee-content">
+                    FLUTTER • PWA • SUPABASE • NODE.JS • TWA • SVELTE • GAME DEVELOPMENT • CROSS-PLATFORM SOLUTIONS • 
+                    FLUTTER • PWA • SUPABASE • NODE.JS • TWA • SVELTE • GAME DEVELOPMENT • CROSS-PLATFORM SOLUTIONS • 
+                </div>
+            </div>
+
+            <!-- Projects Section -->
             <section id="projects">
-                <h2>MY PROJECTS</h2>
+                <h2 class="section-title">// SELECTED_PROJECTS</h2>
                 <div class="projects-grid">
-                    <div class="project-card">
+                    
+                    <!-- Project 1 -->
+                    <div class="project-card" data-tilt>
                         <div class="project-image">
-                            <!-- Добавлены размеры изображения для предотвращения CLS -->
-                            <img src="./images/qlutter-preview.jpg" alt="Qlutter App Preview" width="250" height="120" loading="lazy">
+                            <!-- Placeholder used for demo purposes -->
+                            <img src="./images/novella-svelte-preview.jpg" alt="Novella Svelte Preview">
                         </div>
                         <div class="project-title">
-                            <img src="./images/qlutter.png" alt="Qlutter" width="16" height="16" loading="lazy">
-                            <h3>COLOR POOL PUZZLE</h3>
+                            <i class="fa-solid fa-book-open"></i>
+                            <span>NOVELLA STORIES</span>
                         </div>
-                        <p class="project-description">
-                            A challenging logic puzzle game built with Flutter as a Progressive Web App.
-                        </p>
+                        <p class="project-desc">Interactive story experience delivered through a web (in development).</p>
+                        <div class="project-tags">
+                            <span class="tag">SVELTE</span>
+                            <span class="tag">SUPABASE</span>
+                            <span class="tag">WIP</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://ziadik.github.io/svelte_novella/" class="icon-link" title="Run"><i class="fa-solid fa-play"></i></a>
+                            <a href="https://github.com/ziadik/svelte_novella" class="icon-link" title="Code"><i class="fa-brands fa-github"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="project-card" data-tilt>
+                        <div class="project-image">
+                            <img src="./images/qlutter-preview.jpg" alt="Qlutter App Preview">
+                        </div>
+                        <div class="project-title">
+                            <i class="fa-solid fa-puzzle-piece"></i>
+                            <span>COLOR POOL PUZZLE</span>
+                        </div>
+                        <p class="project-desc">A challenging logic puzzle game built with Flutter as a Progressive Web App.</p>
                         <div class="project-tags">
                             <span class="tag">FLUTTER</span>
                             <span class="tag">PWA</span>
                             <span class="tag">GAME</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://qlutter.ziidik.ru" class="project-link">RUN</a>
-                            <a href="https://github.com/ziadik/qlutter" class="github-link">CODE</a>
+                            <a href="https://qlutter.ziidik.ru" class="icon-link" title="Run"><i class="fa-solid fa-play"></i></a>
+                            <a href="https://github.com/ziadik/qlutter" class="icon-link" title="Code"><i class="fa-brands fa-github"></i></a>
                         </div>
                     </div>
 
-                    <div class="project-card">
+                    <!-- Project 3 -->
+                    <div class="project-card" data-tilt>
                         <div class="project-image">
-                            <img src="./images/novella-telegram-preview.jpg" alt="Novella Telegram Preview" width="250" height="120" loading="lazy">
+                            <img src="./images/novella-telegram-preview.jpg" alt="Novella Telegram Preview">
                         </div>
                         <div class="project-title">
-                            <img src="./images/novella_icon.png" alt="Novella Telegram" width="16" height="16" loading="lazy">
-                            <h3>NOVELLA TELEGRAM</h3>
+                            <i class="fa-brands fa-telegram"></i>
+                            <span>NOVELLA TELEGRAM</span>
                         </div>
-                        <p class="project-description">
-                            Interactive story experience delivered through a Telegram bot (in development).
-                        </p>
+                        <p class="project-desc">Interactive story experience delivered through a Telegram bot.</p>
                         <div class="project-tags">
                             <span class="tag">TELEGRAM BOT</span>
                             <span class="tag">SVELTE</span>
-                            <span class="tag">SUPABASE</span>
-                            <span class="tag">IN DEVELOPMENT</span>
+                            <span class="tag">WIP</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://t.me/gigabidzeBot/dracula_novella_game" class="project-link">RUN</a>
-                            <a href="https://github.com/ziadik/novella-telegram-bot" class="github-link">CODE</a>
+                            <a href="https://t.me/gigabidzeBot/dracula_novella_game" class="icon-link" title="Run"><i class="fa-solid fa-paper-plane"></i></a>
+                            <a href="https://github.com/ziadik/novella-telegram-bot" class="icon-link" title="Code"><i class="fa-brands fa-github"></i></a>
                         </div>
                     </div>
 
-                    <div class="project-card">
+                    <!-- Project 4 -->
+                    <div class="project-card" data-tilt>
                         <div class="project-image">
-                            <img src="./images/novella-editor-preview.jpg" alt="Novella Editor Preview" width="250" height="120" loading="lazy">
+                            <img src="./images/novella-editor-preview.jpg" alt="Novella Editor Preview">
                         </div>
                         <div class="project-title">
-                            <img src="./images/novella_editor.png" alt="Novella Editor" width="16" height="16" loading="lazy">
-                            <h3>NOVELLA EDITOR V2</h3>
+                            <i class="fa-solid fa-pen-to-square"></i>
+                            <span>NOVELLA EDITOR V2</span>
                         </div>
-                        <p class="project-description">
-                            Advanced mobile editor for creating interactive stories and text-based games (in development).
-                        </p>
+                        <p class="project-desc">Advanced mobile editor for creating interactive stories and text-based games.</p>
                         <div class="project-tags">
                             <span class="tag">FLUTTER</span>
                             <span class="tag">PWA</span>
-                            <span class="tag">SUPABASE</span>
-                            <span class="tag">IN DEVELOPMENT</span>
+                            <span class="tag">WIP</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://ziadik.github.io/novella_mobile_editor_web_v2/" class="project-link">RUN</a>
-                            <a href="https://github.com/ziadik/novella_mobile_editor_web_v2" class="github-link">CODE</a>
+                            <a href="https://ziadik.github.io/novella_mobile_editor_web_v2/" class="icon-link" title="Run"><i class="fa-solid fa-play"></i></a>
+                            <a href="https://github.com/ziadik/novella_mobile_editor_web_v2" class="icon-link" title="Code"><i class="fa-brands fa-github"></i></a>
                         </div>
                     </div>
 
-                    <div class="project-card">
+                     <!-- Project 5 -->
+                     <div class="project-card" data-tilt>
                         <div class="project-image">
-                            <img src="./images/tictactoe-preview.jpg" alt="TicTacToe App Preview" width="250" height="120" loading="lazy">
+                            <img src="./images/tictactoe-preview.jpg" alt="TicTacToe App Preview">
                         </div>
                         <div class="project-title">
-                            <img src="./images/tictactoe.png" alt="TicTacToe" width="16" height="16" loading="lazy">
-                            <h3>TIC TAC TOE</h3>
+                            <i class="fa-solid fa-x"></i>
+                            <span>TIC TAC TOE</span>
                         </div>
-                        <p class="project-description">
-                            The classic Tic-Tac-Toe game implemented as a Progressive Web App with smooth animations.
-                        </p>
+                        <p class="project-desc">The classic Tic-Tac-Toe game implemented as a PWA with smooth animations.</p>
                         <div class="project-tags">
                             <span class="tag">PWA</span>
                             <span class="tag">GAME</span>
                             <span class="tag">FLUTTER</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://tictactoe.ziidik.ru" class="project-link">RUN</a>
-                            <a href="https://github.com/ziadik/tictactoe" class="github-link">CODE</a>
+                            <a href="https://tictactoe.ziidik.ru" class="icon-link" title="Run"><i class="fa-solid fa-play"></i></a>
+                            <a href="https://github.com/ziadik/tictactoe" class="icon-link" title="Code"><i class="fa-brands fa-github"></i></a>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- About Section -->
+            <section id="about">
+                <h2 class="section-title">// ABOUT_ME</h2>
+                <div class="about-grid">
+                    <div class="about-text">
+                        <p style="margin-bottom: 20px;">
+                            I'm a passionate developer specializing in <span style="color:var(--primary)">mobile and web applications</span>. 
+                            With expertise in <span style="color:var(--secondary)">Flutter, PWA development, and cross-platform solutions</span>, 
+                            I create engaging and performant applications.
+                        </p>
+                        <p>
+                            My focus is on building intuitive interfaces, optimizing performance, and implementing modern development practices.
+                            I enjoy tackling complex challenges and transforming ideas into functional, beautiful applications.
+                        </p>
+                    </div>
+                    <div class="terminal-window">
+                        <div class="terminal-header">
+                            <div class="dot red"></div>
+                            <div class="dot yellow"></div>
+                            <div class="dot green"></div>
+                        </div>
+                        <div class="terminal-body">
+                            <p><span class="command">user@dz-systems:~$</span> <span class="keyword">cat</span> profile.json</p>
+                            <p style="margin-top: 10px;">{</p>
+                            <p>&nbsp;&nbsp;"name": <span class="string">"Dmitry Zyadik"</span>,</p>
+                            <p>&nbsp;&nbsp;"role": <span class="string">"Full Stack Dev"</span>,</p>
+                            <p>&nbsp;&nbsp;"location": <span class="string">"Digital Void"</span>,</p>
+                            <p>&nbsp;&nbsp;"coffee_level": <span class="keyword">100%</span></p>
+                            <p>}</p>
+                            <p style="margin-top: 10px;"><span class="command">user@dz-systems:~$</span> <span class="blink">_</span></p>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section id="about">
-                <h2>ABOUT ME</h2>
-                <div class="about-content">
-                    <p class="about-text">
-                        I'm a passionate developer specializing in <span class="highlight">mobile and web applications</span>. 
-                        With expertise in <span class="highlight">Flutter, PWA development, and cross-platform solutions</span>, 
-                        I create engaging and performant applications that provide excellent user experiences.
-                    </p>
-                    <p class="about-text">
-                        My focus is on building intuitive interfaces, optimizing performance, and implementing modern development practices.
-                        I enjoy tackling complex challenges and transforming ideas into functional, beautiful applications.
-                    </p>
-                </div>
-            </section>
-
+            <!-- Skills Section -->
             <section id="skills">
-                <h2>SKILLS & TECHNOLOGIES</h2>
-                <div class="skills-grid">
-                    <div class="skill-item">FLUTTER</div>
-                    <div class="skill-item">DART</div>
-                    <div class="skill-item">SUPABASE</div>
-                    <div class="skill-item">SVELTE</div>
-                    <div class="skill-item">JAVASCRIPT</div>
-                    <div class="skill-item">HTML/CSS</div>
-                    <div class="skill-item">PWA</div>
-                    <div class="skill-item">RESPONSIVE DESIGN</div>
-                    <div class="skill-item">UI/UX DESIGN</div>
-                    <div class="skill-item">GIT</div>
+                <h2 class="section-title">// TECH_STACK</h2>
+                <div class="skills-container">
+                    <div class="skill-pill">FLUTTER</div>
+                    <div class="skill-pill">DART</div>
+                    <div class="skill-pill">SUPABASE</div>
+                    <div class="skill-pill">SVELTE</div>
+                    <div class="skill-pill">JAVASCRIPT</div>
+                    <div class="skill-pill">HTML/CSS</div>
+                    <div class="skill-pill">PWA</div>
+                    <div class="skill-pill">RESPONSIVE DESIGN</div>
+                    <div class="skill-pill">UI/UX</div>
+                    <div class="skill-pill">GIT</div>
+                    <div class="skill-pill">NODE.JS</div>
+                    <div class="skill-pill">TWA</div>
                 </div>
             </section>
         </main>
 
         <footer>
-            <p>&copy; 2025 DMITRY ZYADIK. ALL RIGHTS RESERVED.</p>
+            <p>&copy; 2026 DMITRY ZYADIK.</p>
         </footer>
     </div>
 
-    <!-- Отложенная загрузка JavaScript -->
     <script>
-        // Упрощенный JavaScript для улучшения производительности
-        document.addEventListener('DOMContentLoaded', function() {
-            // Анимация бегущей строки
-            const marqueeSpan = document.querySelector('.marquee span');
-            if (marqueeSpan) {
-                marqueeSpan.style.animation = 'marquee 15s linear infinite';
-            }
-            
-            // Добавление анимации мигания
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-                @keyframes marquee { 0% { transform: translate(0, 0); } 100% { transform: translate(-100%, 0); } }
-                .blink { animation: blink 1s step-end infinite; }
-            `;
-            document.head.appendChild(style);
-            
-            // Отложенная загрузка эффектов
-            setTimeout(() => {
-                // Загрузка дополнительных стилей
-                const link = document.createElement('link');
-                link.rel = 'stylesheet';
-                link.href = 'styles-effects.css';
-                document.head.appendChild(link);
-                
-                // Загрузка дополнительных скриптов
-                const script = document.createElement('script');
-                script.src = 'effects.js';
-                document.body.appendChild(script);
-            }, 1000);
+        // --- 1. Custom Cursor Logic ---
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+
+        window.addEventListener('mousemove', (e) => {
+            const posX = e.clientX;
+            const posY = e.clientY;
+
+            // Dot follows instantly
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+
+            // Outline follows with delay
+            cursorOutline.animate({
+                left: `${posX}px`,
+                top: `${posY}px`
+            }, { duration: 500, fill: "forwards" });
         });
+
+        // --- 2. Typing Effect ---
+        const textElement = document.getElementById('typing-text');
+        const phrases = ["MOBILE DEVELOPER", "GAME CREATOR", "FLUTTER EXPERT", "PWA SPECIALIST"];
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typeSpeed = 100;
+
+        function type() {
+            const currentPhrase = phrases[phraseIndex];
+            
+            if (isDeleting) {
+                textElement.textContent = currentPhrase.substring(0, charIndex - 1);
+                charIndex--;
+                typeSpeed = 50;
+            } else {
+                textElement.textContent = currentPhrase.substring(0, charIndex + 1);
+                charIndex++;
+                typeSpeed = 100;
+            }
+
+            if (!isDeleting && charIndex === currentPhrase.length) {
+                isDeleting = true;
+                typeSpeed = 2000; // Pause at end
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                typeSpeed = 500;
+            }
+
+            setTimeout(type, typeSpeed);
+        }
+
+        document.addEventListener('DOMContentLoaded', type);
+
+        // --- 3. 3D Tilt Effect for Cards (Vanilla JS) ---
+        const cards = document.querySelectorAll('.project-card');
+
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = ((y - centerY) / centerY) * -10; // Max rotation deg
+                const rotateY = ((x - centerX) / centerX) * 10;
+
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+            });
+        });
+
+        // --- 4. Scroll Reveal Animation ---
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // --- 5. Interactive Canvas Background (Network Particles) ---
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        
+        let width, height;
+        let particles = [];
+        
+        // Configuration
+        const particleCount = 60;
+        const connectionDistance = 150;
+        const mouseDistance = 200;
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.size = Math.random() * 2 + 1;
+                this.color = Math.random() > 0.5 ? '#00ff41' : '#00f3ff'; // Green or Cyan
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                // Bounce off edges
+                if (this.x < 0 || this.x > width) this.vx *= -1;
+                if (this.y < 0 || this.y > height) this.vy *= -1;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        let mouse = { x: null, y: null };
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.x;
+            mouse.y = e.y;
+        });
+        window.addEventListener('mouseleave', () => {
+            mouse.x = null;
+            mouse.y = null;
+        });
+
+        function animateCanvas() {
+            ctx.clearRect(0, 0, width, height);
+            
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+
+                // Connect particles to each other
+                for (let j = i; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < connectionDistance) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(0, 255, 65, ${1 - distance / connectionDistance})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+
+                // Connect particles to mouse
+                if (mouse.x != null) {
+                    const dx = particles[i].x - mouse.x;
+                    const dy = particles[i].y - mouse.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < mouseDistance) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(0, 243, 255, ${1 - distance / mouseDistance})`; // Cyan for mouse connection
+                        ctx.lineWidth = 0.8;
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(mouse.x, mouse.y);
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animateCanvas);
+        }
+
+        window.addEventListener('resize', () => {
+            resize();
+            initParticles();
+        });
+
+        // Initialize Canvas
+        resize();
+        initParticles();
+        animateCanvas();
+
     </script>
 </body>
 </html>
