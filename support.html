@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support - Color Pool Puzzle</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f4ff;
+            transition: background-color 0.3s ease;
+        }
+        
+        h1 {
+            color: #50427D;
+            border-bottom: 3px solid #50427D;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        
+        h2 {
+            color: #3B2D68;
+            margin-top: 30px;
+            font-size: 1.5em;
+        }
+        
+        .language-selector {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            background: white;
+            padding: 8px 12px;
+            border-radius: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .lang-btn {
+            background: none;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 5px 12px;
+            border-radius: 20px;
+            color: #50427D;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .lang-btn.active {
+            background: #50427D;
+            color: white;
+        }
+        
+        .lang-btn:hover {
+            background: #e0d5ff;
+        }
+        
+        .lang-btn.active:hover {
+            background: #3B2D68;
+        }
+        
+        .contact-block {
+            background-color: white;
+            border-left: 5px solid #50427D;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 4px 15px rgba(80, 66, 125, 0.15);
+        }
+        
+        .faq-item {
+            background-color: white;
+            padding: 20px 25px;
+            margin: 20px 0;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.2s;
+        }
+        
+        .faq-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(80, 66, 125, 0.2);
+        }
+        
+        .faq-question {
+            font-weight: bold;
+            color: #50427D;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .faq-question::before {
+            content: "❓";
+            font-size: 1.2em;
+        }
+        
+        .faq-answer {
+            color: #444;
+            padding-left: 30px;
+        }
+        
+        a {
+            color: #50427D;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        
+        a:hover {
+            color: #3B2D68;
+            text-decoration: underline;
+        }
+        
+        footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 2px solid #50427D;
+            color: #666;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 15px;
+        }
+        
+        .footer-links a {
+            color: #50427D;
+        }
+        
+        .version {
+            color: #888;
+            font-size: 0.9em;
+            margin-top: 15px;
+        }
+        
+        .email-highlight {
+            font-size: 1.3em;
+            background: #f0eaff;
+            padding: 10px 20px;
+            border-radius: 30px;
+            display: inline-block;
+            margin: 10px 0;
+        }
+        
+        @media (max-width: 600px) {
+            body { padding: 15px; }
+            h1 { font-size: 1.8em; }
+            .language-selector {
+                position: static;
+                margin-bottom: 20px;
+                justify-content: center;
+            }
+            .faq-question { font-size: 1.1em; }
+            .email-highlight { font-size: 1.1em; }
+        }
+    </style>
+</head>
+<body>
+
+     <div class="language-selector">
+        <button class="lang-btn active" onclick="switchLanguage('en')">English</button>
+        <button class="lang-btn" onclick="switchLanguage('ru')">Русский</button>
+    </div>
+
+    <!-- English Content -->
+    <div id="content-en" style="display: block;">
+        <h1>📞 Color Pool Puzzle Support</h1>
+        <p>We're here to help! If you have any questions or issues with the game, feel free to contact us or check the FAQ below.</p>
+
+        <div class="contact-block">
+            <h2>📧 Contact Us</h2>
+            <p>Send us an email and we'll get back to you as soon as possible (usually within 1-2 business days).</p>
+            <div class="email-highlight">
+                📩 <a href="mailto:dmitry.zyadik@gmail.com">dmitry.zyadik@gmail.com</a>
+            </div>
+        </div>
+
+        <h2>❓ Frequently Asked Questions</h2>
+
+        <div class="faq-item">
+            <div class="faq-question">How do I reset my game progress?</div>
+            <div class="faq-answer">
+                Open the game settings (⚙️ button in the main menu), scroll down to the "Progress" section and tap "Reset Results". Confirm the action - this will delete all saved records and start the game from level 1.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Sound or vibration doesn't work. What should I do?</div>
+            <div class="faq-answer">
+                Check the in-app settings (⚙️ button) - make sure both sound and vibration toggles are enabled. Also check if your device is in silent mode (using the side switch) and that the volume is turned up.
+            </div>
+        </div>
+
+         <div class="faq-item">
+            <div class="faq-question">I'm stuck on a level. Are there hints?</div>
+            <div class="faq-answer">
+                No. If you're having trouble passing a level, maybe you're just tired. Take a break, relax, and try again later with fresh eyes!
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">How do I change the language?</div>
+            <div class="faq-answer">
+                Language can be changed in the app settings (⚙️ button) under the "Language" section. The game supports 30+ languages including English, Russian, Ukrainian, Kazakh and many more.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Will there be new levels added?</div>
+            <div class="faq-answer">
+                We're constantly working on improving the game! Follow updates in the App Store to get new levels and features.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">The app crashed. How can I help?</div>
+            <div class="faq-answer">
+                We're sorry for the inconvenience! Please send us an email with details: what were you doing when it crashed, your device model, and iOS version. This helps us fix the issue faster.
+            </div>
+        </div>
+    </div>
+
+    <!-- Russian Content -->
+    <div id="content-ru" style="display: none;">
+        <h1>📞 Поддержка Color Pool Puzzle</h1>
+        <p>Мы всегда готовы помочь! Если у вас возникли вопросы или проблемы с игрой, свяжитесь с нами или найдите ответ в списке частых вопросов ниже.</p>
+
+        <div class="contact-block">
+            <h2>📧 Связаться с нами</h2>
+            <p>Напишите нам на электронную почту, и мы ответим как можно скорее (обычно в течение 1-2 рабочих дней).</p>
+            <div class="email-highlight">
+                📩 <a href="mailto:dmitry.zyadik@gmail.com">dmitry.zyadik@gmail.com</a>
+            </div>
+        </div>
+
+        <h2>❓ Часто задаваемые вопросы</h2>
+
+        <div class="faq-item">
+            <div class="faq-question">Как сбросить прогресс в игре?</div>
+            <div class="faq-answer">
+                Откройте настройки игры (кнопка ⚙️ в главном меню), прокрутите вниз до раздела "Прогресс" и нажмите "Сбросить результаты". Подтвердите действие — это удалит все сохранённые рекорды и начнёт игру с первого уровня.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Не работают звук или вибрация. Что делать?</div>
+            <div class="faq-answer">
+                Проверьте настройки в самом приложении (кнопка ⚙️) — убедитесь, что ползунки звука и вибрации включены. Также проверьте, не отключён ли звук на вашем устройстве (кнопкой-качелькой) и не активирован ли беззвучный режим.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Я не могу пройти уровень. Есть подсказки?</div>
+            <div class="faq-answer">
+                Нет. Если долго не получается пройти уровень, возможно вы устали, сделайте перерыв и попробуйте снова.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Как сменить язык в игре?</div>
+            <div class="faq-answer">
+                Язык можно изменить в настройках приложения (кнопка ⚙️) в разделе "Язык". Игра поддерживает более 30 языков, включая русский, английский, украинский, казахский и многие другие.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Будут ли добавлены новые уровни?</div>
+            <div class="faq-answer">
+                Мы постоянно работаем над улучшением игры! Следите за обновлениями в App Store, чтобы не пропустить новые уровни и функции.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Приложение вылетает. Как помочь?</div>
+            <div class="faq-answer">
+                Приносим извинения за неудобства! Пожалуйста, напишите нам на почту с деталями: что вы делали в момент вылета, модель вашего устройства и версию iOS. Это поможет нам быстрее исправить проблему.
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Color Pool Puzzle © 2026. All rights reserved. | Все права защищены.</p>
+        <div class="footer-links">
+            <a href="./privacy.html">Privacy Policy / Политика конфиденциальности</a>
+            <!-- <a href="terms.html">Terms of Use / Условия использования</a> -->
+        </div>
+        <div class="version">
+            App Version: 1.0.0 | Last updated: March 2026
+        </div>
+    </footer>
+
+    <script>
+        function switchLanguage(lang) {
+            // Update content visibility
+            document.getElementById('content-en').style.display = lang === 'en' ? 'block' : 'none';
+            document.getElementById('content-ru').style.display = lang === 'ru' ? 'block' : 'none';
+            
+            // Update active button state
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            if (lang === 'en') {
+                document.querySelectorAll('.lang-btn')[0].classList.add('active');
+            } else {
+                document.querySelectorAll('.lang-btn')[1].classList.add('active');
+            }
+            
+            // Save language preference
+            localStorage.setItem('preferred-language', lang);
+        }
+        
+        // Auto-detect browser language on page load
+        window.onload = function() {
+            const savedLang = localStorage.getItem('preferred-language');
+            
+            if (savedLang) {
+                switchLanguage(savedLang);
+            } else {
+                // Detect browser language
+                const browserLang = navigator.language || navigator.userLanguage;
+                if (browserLang.startsWith('ru')) {
+                    switchLanguage('ru');
+                } else {
+                    switchLanguage('en'); // Default to English
+                }
+            }
+        };
+    </script>
+
+</body>
+</html>
